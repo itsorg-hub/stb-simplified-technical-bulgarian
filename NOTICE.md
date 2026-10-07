@@ -7,6 +7,8 @@
 | Правила, документация, речник на STB (`docs/`, `dictionary/`, `README.md`) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — пълен текст в `LICENSE-CONTENT.txt` |
 | Скриптове (`scripts/`) | [MIT](LICENSE) |
 
+**Авторско право:** © 2026 Innovative Technology Solutions LTD, Emil Lichev и участниците в STB (вижте [AUTHORS.md](AUTHORS.md)).
+
 Когато използвате или променяте материалите, посочете проекта като източник и запазете лиценза CC BY-SA 4.0 за производните работи.
 
 ## Външни източници, върху които се основава проектът
