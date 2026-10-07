@@ -26,7 +26,7 @@
 ## Съдържание
 
 - [`docs/rules.md`](docs/rules.md) — правила за писане
-- [`dictionary/`](dictionary/) — речник v0.1 (около 400 записа), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
+- [`dictionary/`](dictionary/) — ядро на речника, [пакети по област](dictionary/domains/) (механика, електрика, хидравлика, ИТ), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
 - [`scripts/`](scripts/) — `stb-check.ps1` (проверка на текст), `build-forms.ps1` (таблица с форми на думите), `stb-lib.ps1`
 - [`tests/`](tests/) — автоматични тестове на проверката
 - [`skills/stb-bulgarian/`](skills/stb-bulgarian/) — умение за Claude (SKILL.md и справочни файлове)
@@ -51,6 +51,7 @@
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Text "1. Затегнете гайката с 25 N·m."
 powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path инструкция.md -Kind procedure
+powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path инструкция.md -Domain mechanics,hydraulics
 ```
 
 Тестове: `powershell -ExecutionPolicy Bypass -File tests\run-tests.ps1`

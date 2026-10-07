@@ -12,7 +12,7 @@ param(
 $ErrorActionPreference = 'Stop'
 if (-not (Test-Path $Kaikki)) { throw "Липсва файл: $Kaikki" }
 
-$lemmas = Get-StbApprovedLemmas $DictDir
+$lemmas = (Get-StbDictionary $DictDir @('all')).Approved
 $pairs = New-Object 'Collections.Generic.HashSet[string]'
 foreach ($l in $lemmas) { [void]$pairs.Add("$l`t$l") }
 

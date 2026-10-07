@@ -13,6 +13,7 @@ param(
     [string]$Path,
     [string]$Text,
     [ValidateSet('procedure', 'description')][string]$Kind = 'procedure',
+    [string[]]$Domain = @(),
     [string]$DictDir = (Join-Path $PSScriptRoot '..\dictionary'),
     [switch]$NoVocabulary
 )
@@ -23,9 +24,8 @@ try { [Console]::OutputEncoding = [Text.Encoding]::UTF8 } catch {}
 if (-not $Text -and $Path) { $Text = [IO.File]::ReadAllText($Path, $script:Utf8) }
 if (-not $Text) { throw 'Подайте -Path или -Text.' }
 
-$approved = Get-StbApprovedLemmas $DictDir
-$forms = Get-StbForms $DictDir
-$blacklist = Get-StbBlacklist $DictDir
+$dict = Get-StbDictionary $DictDir $Domain
+$approved = $dict.Approved; $forms = $dict.Forms; $blacklist = $dict.Blacklist
 $limit = if ($Kind -eq 'procedure') { 20 } else { 25 }
 
 $numberWords = @('нула','два','две','три','четири','пет','шест','седем','осем','девет','десет','сто','хиляда')
@@ -92,28 +92,37 @@ foreach ($par in $paragraphs) {
                 if ($tokens[$i] -eq 'ако') { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '4.5' $tag 'Условието („ако") трябва да стои преди действието.'; break }
             }
             # 2.9 деепричастие
-            foreach ($t in $tokens) { if ($t -match '(айки|яйки|ейки)$') { Add-Finding 'ГРЕШКА' '2.9' $tag "Деепричастие „$t". Пишете отделно изречение." } }
+            foreach ($t in $tokens) { if ($t -match '(айки|яйки|ейки)$') { Add-Finding 'ГРЕШКА' '2.9' $tag "Деепричастие «$t». Пишете отделно изречение." } }
             # 2.4 преизказ
-            foreach ($t in $tokens) { if ($reported -contains $t) { Add-Finding 'ГРЕШКА' '2.4' $tag "Преизказна форма „$t"." } }
+            foreach ($t in $tokens) { if ($reported -contains $t) { Add-Finding 'ГРЕШКА' '2.4' $tag "Преизказна форма «$t»." } }
             # 7.1 числа с думи
-            foreach ($t in $tokens) { if ($numberWords -contains $t) { Add-Finding 'ГРЕШКА' '7.1' $tag "Числото „$t" се пише с цифри." } }
+            foreach ($t in $tokens) { if ($numberWords -contains $t) { Add-Finding 'ГРЕШКА' '7.1' $tag "Числото «$t» се пише с цифри." } }
             # 7.5 приблизителност
-            foreach ($t in $tokens) { if ($vague -contains $t) { Add-Finding 'ГРЕШКА' '7.5' $tag "„$t" без числова граница." } }
+            foreach ($t in $tokens) { if ($vague -contains $t) { Add-Finding 'ГРЕШКА' '7.5' $tag "«$t» без числова граница." } }
             # 2.6 / 2.5 „се"
-            if ($tokens -contains 'се') { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '2.5/2.6' $tag 'Има „се". Проверете дали не е страдателен залог или безлична команда.' }
+            if ($tokens -contains 'се') { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '2.5/2.6' $tag 'Има «се". Проверете дали не е страдателен залог или безлична команда.' }
             # 3.5 ⚠ и 3.6 ⚠
-            foreach ($t in $tokens) { if ($relatives -contains $t) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '3.5 ⚠' $tag "„$t": потвърдете, че сочи към едно съществително." } }
-            foreach ($t in ($tokens | Where-Object { $pronouns -contains $_ } | Select-Object -Unique)) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '3.6 ⚠' $tag "Местоимение „$t": потвърдете, че е ясно за какво се отнася." }
+            foreach ($t in $tokens) { if ($relatives -contains $t) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '3.5 ⚠' $tag "«$t»: потвърдете, че сочи към едно съществително." } }
+            foreach ($t in ($tokens | Where-Object { $pronouns -contains $_ } | Select-Object -Unique)) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '3.6 ⚠' $tag "Местоимение «$t»: потвърдете, че е ясно за какво се отнася." }
             # Речник
             if (-not $NoVocabulary) {
-                foreach ($t in ($tokens | Select-Object -Unique)) {
-                    if ($approved.Contains($t)) { continue }
-                    if ($blacklist.ContainsKey($t)) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена дума „$t". Замяна: $($blacklist[$t])"; continue }
-                    if ($forms.ContainsKey($t)) { if ($blacklist.ContainsKey($forms[$t])) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена дума „$t" (форма на „$($forms[$t])"). Замяна: $($blacklist[$forms[$t]])" }; continue }
-                    Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.1' $tag "„$t" не е в речника."
+                $vtext = Get-StbNorm $orig
+                foreach ($rx in $dict.PhraseRegex) { $vtext = $rx.Replace($vtext, ' ') }
+                foreach ($t in (@(Get-StbCyrillicTokens $vtext) | Select-Object -Unique)) {
+                    $lemma = if ($forms.ContainsKey($t)) { $forms[$t] } else { $t }
+                    if ($approved.Contains($t) -or $approved.Contains($lemma)) {
+                        if ($dict.ActivePacks -gt 1 -and ($dict.Conflicts.Contains($t) -or $dict.Conflicts.Contains($lemma))) {
+                            Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.6' $tag "«$t» е двусмислена между области. Уточнете (вж. dictionary/domains/conflicts.md)."
+                        }
+                        continue
+                    }
+                    if ($blacklist.ContainsKey($t)) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена дума «$t». Замяна: $($blacklist[$t])"; continue }
+                    if ($blacklist.ContainsKey($lemma)) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена дума «$t» (форма на «$lemma»). Замяна: $($blacklist[$lemma])"; continue }
+                    if ($dict.OtherPacks.ContainsKey($lemma)) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.1' $tag "«$t» е от пакет «$($dict.OtherPacks[$lemma])», който не е включен (-Domain)."; continue }
+                    if (Test-StbProbableForm $dict $t) { continue }
+                    Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.1' $tag "«$t» не е в речника."
                 }
-            }
-        }
+            }        }
     }
     if ($sentencesInPar -gt 6) { Add-Finding 'ГРЕШКА' '5.1' "абзац" "Абзацът има $sentencesInPar изречения (максимум 6)." }
 }
