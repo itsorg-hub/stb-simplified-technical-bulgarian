@@ -26,8 +26,10 @@
 ## Съдържание
 
 - [`docs/rules.md`](docs/rules.md) — правила за писане
-- [`dictionary/`](dictionary/) — речник (в процес) и списък с кандидати
-- [`scripts/`](scripts/) — скриптове за подбор на думи от свободни източници (PowerShell)
+- [`dictionary/`](dictionary/) — речник v0.1 (около 400 записа), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
+- [`scripts/`](scripts/) — `stb-check.ps1` (проверка на текст), `build-forms.ps1` (таблица с форми на думите), `stb-lib.ps1`
+- [`tests/`](tests/) — автоматични тестове на проверката
+- [`skills/stb-bulgarian/`](skills/stb-bulgarian/) — умение за Claude (SKILL.md и справочни файлове)
 - [`NOTICE.md`](NOTICE.md) — произход на материалите и какво не е включено
 - [`AUTHORS.md`](AUTHORS.md) — автори и участници
 
@@ -41,3 +43,16 @@
 ## Принос
 
 Предложения за думи и правила са добре дошли като issues или pull requests. Всяка нова дума в речника трябва да има едно значение и пример.
+
+## Бърз старт
+
+Проверка на текст (Windows PowerShell 5.1 или по-нов):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Text "1. Затегнете гайката с 25 N·m."
+powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path инструкция.md -Kind procedure
+```
+
+Тестове: `powershell -ExecutionPolicy Bypass -File tests\run-tests.ps1`
+
+Проверката намира само нарушения, които се разпознават по формата на текста. Правила 2.3, 3.5 и 3.6 са само предупреждения и изискват преценка от човек.
