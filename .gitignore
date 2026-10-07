@@ -1,0 +1,13 @@
+# Сурови външни данни (големи или с чужд лиценз) — свалят се локално
+sources/
+# Материали от РБЕ (ibl.bas.bg) — защитени с авторско право, не се публикуват
+rbe-*
+*.local.ps1
+review.txt
+# Работни файлове
+tmp.html
+t.html
+*.full
+core-words.tsv
+bg-lexicon.*
+build.py
