@@ -15,7 +15,7 @@
 
 - **ASD-STE100 Simplified Technical English** — идеята и структурата на правилата са вдъхновени от стандарта. Текстът на правилата в този проект е собствен и е адаптиран към българския език. ASD-STE100 е собственост на ASD (AeroSpace and Defence Industries Association of Europe). Проектът не е свързан с ASD и не е одобрен от тях. За автентичните правила на английски вижте <https://www.asd-ste100.org>.
 - **FrequencyWords** (hermitdave) — честотен списък на български, получен от OpenSubtitles. Съдържанието е под CC BY-SA 4.0. <https://github.com/hermitdave/FrequencyWords>
-- **Wiktionary** чрез [kaikki.org](https://kaikki.org/dictionary/Bulgarian/) (Tatu Ylonen) — данни за лемите, формите и значенията. Съдържанието е под CC BY-SA 4.0 (и GFDL). Източникът е използван само за подбор и проверка на думи.
+- **Wiktionary** чрез [kaikki.org](https://kaikki.org/dictionary/Bulgarian/) (Tatu Ylonen) — данни за лемите, формите и значенията. Съдържанието е под CC BY-SA 4.0 (и GFDL). Източникът е използван за подбор и проверка на думи. Файлът `dictionary/forms.tsv` (словоформи на разрешените думи) е получен от тези данни и се разпространява под същия лиценз CC BY-SA 4.0.
 
 ## Какво НЕ е включено в хранилището
 
