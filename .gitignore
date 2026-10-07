@@ -11,3 +11,7 @@ t.html
 core-words.tsv
 bg-lexicon.*
 build.py
+cand-words.tsv
+rev.txt
+senses.tsv
+scratch*
