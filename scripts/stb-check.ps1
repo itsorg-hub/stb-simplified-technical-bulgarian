@@ -102,7 +102,7 @@ foreach ($par in $paragraphs) {
             # 7.5 приблизителност
             foreach ($t in $tokens) { if ($vague -contains $t) { Add-Finding 'ГРЕШКА' '7.5' $tag "«$t» без числова граница." } }
             # 2.6 / 2.5 „се"
-            if ($tokens -contains 'се') { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '2.5/2.6' $tag 'Има «се". Проверете дали не е страдателен залог или безлична команда.' }
+            if ($tokens -contains 'се') { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '2.5/2.6' $tag 'Има «се». Проверете дали не е страдателен залог или безлична команда.' }
             # 3.5 ⚠ и 3.6 ⚠
             foreach ($t in $tokens) { if ($relatives -contains $t) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '3.5 ⚠' $tag "«$t»: потвърдете, че сочи към едно съществително." } }
             foreach ($t in ($tokens | Where-Object { $pronouns -contains $_ } | Select-Object -Unique)) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '3.6 ⚠' $tag "Местоимение «$t»: потвърдете, че е ясно за какво се отнася." }
