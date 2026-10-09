@@ -1,0 +1,29 @@
+name: Оспорване на решение
+description: Не сте съгласни със значение, забрана или избор между думи
+title: "[Решение] "
+labels: ["преглед"]
+body:
+  - type: input
+    id: word
+    attributes:
+      label: Дума или решение
+      description: Например „маса вместо тегло" или „датчик е неразрешен".
+    validations:
+      required: true
+  - type: textarea
+    id: argument
+    attributes:
+      label: Защо мислите, че е грешно
+      description: Дайте примери от практиката, стандарти или опит.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предложение
+    validations:
+      required: true
+  - type: input
+    id: area
+    attributes:
+      label: Област на техниката

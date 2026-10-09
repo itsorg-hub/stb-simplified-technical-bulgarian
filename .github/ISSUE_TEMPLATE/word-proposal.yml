@@ -1,0 +1,67 @@
+name: Предложение за дума
+description: Предложете нова дума за речника на STB
+title: "[Дума] "
+labels: ["речник"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Не копирайте определения от други речници. Напишете значението със свои думи.
+  - type: input
+    id: word
+    attributes:
+      label: Дума
+      description: Основна форма. За глагол — несвършен и свършен вид.
+    validations:
+      required: true
+  - type: dropdown
+    id: pos
+    attributes:
+      label: Част на речта
+      options:
+        - съществително
+        - глагол
+        - прилагателно
+        - наречие
+        - предлог
+        - съюз
+        - друга
+    validations:
+      required: true
+  - type: dropdown
+    id: pack
+    attributes:
+      label: Къде да бъде
+      options:
+        - Ядро
+        - Механика и монтаж
+        - Електрика и електроника
+        - Хидравлика и пневматика
+        - ИТ и софтуер
+        - Подемна и мобилна техника
+        - Автоматизация и роботика
+        - Нов пакет
+    validations:
+      required: true
+  - type: textarea
+    id: meaning
+    attributes:
+      label: Единственото значение
+      description: Едно изречение, със свои думи.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Пример в технически контекст
+    validations:
+      required: true
+  - type: textarea
+    id: avoid
+    attributes:
+      label: Синоними и значения, които да се избягват
+  - type: textarea
+    id: source
+    attributes:
+      label: Откъде е думата
+      description: В какъв тип документ я срещате. Не поставяйте защитен текст.

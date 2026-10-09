@@ -1,0 +1,34 @@
+name: Грешка в проверката
+description: Скриптът stb-check.ps1 дава грешен или липсващ резултат
+title: "[Проверка] "
+labels: ["скриптове"]
+body:
+  - type: textarea
+    id: text
+    attributes:
+      label: Текст, който проверявате
+      description: Само текст, който имате право да споделите.
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: Команда
+      description: Например -Kind procedure -Domain mechanics
+  - type: textarea
+    id: expected
+    attributes:
+      label: Какво очаквахте
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Какво получихте
+    validations:
+      required: true
+  - type: input
+    id: ps
+    attributes:
+      label: Версия на PowerShell
+      description: Изход от $PSVersionTable.PSVersion

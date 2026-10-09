@@ -1,0 +1,32 @@
+name: Правило
+description: Предложете, поправете или изяснете правило за писане
+title: "[Правило] "
+labels: ["правила"]
+body:
+  - type: input
+    id: rule
+    attributes:
+      label: Номер на правило
+      description: Ако е ново, оставете празно.
+  - type: textarea
+    id: text
+    attributes:
+      label: Предложение
+    validations:
+      required: true
+  - type: textarea
+    id: bad
+    attributes:
+      label: Пример за нарушение
+  - type: textarea
+    id: good
+    attributes:
+      label: Поправен пример
+  - type: dropdown
+    id: judgement
+    attributes:
+      label: Може ли да се провери автоматично
+      options:
+        - Да, по форма на текста
+        - Не, изисква преценка (⚠)
+        - Не знам
