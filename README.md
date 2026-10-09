@@ -26,7 +26,7 @@
 ## Съдържание
 
 - [`docs/rules.md`](docs/rules.md) — правила за писане
-- [`dictionary/`](dictionary/) — ядро на речника, [пакети по област](dictionary/domains/) (механика, електрика, хидравлика, ИТ), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
+- [`dictionary/`](dictionary/) — ядро на речника, [пакети по област](dictionary/domains/) (механика, електрика, хидравлика, ИТ, подемна техника, автоматизация), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
 - [`scripts/`](scripts/) — `stb-check.ps1` (проверка на текст), `build-forms.ps1` (таблица с форми на думите), `stb-lib.ps1`
 - [`tests/`](tests/) — автоматични тестове на проверката
 - [`skills/stb-bulgarian/`](skills/stb-bulgarian/) — умение за Claude (SKILL.md и справочни файлове)

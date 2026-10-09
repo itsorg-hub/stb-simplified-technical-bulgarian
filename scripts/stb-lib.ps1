@@ -2,7 +2,7 @@
 # Изисква Windows PowerShell 5.1 или по-нов. Файлът е във формат UTF-8 с BOM.
 
 $script:Utf8 = New-Object System.Text.UTF8Encoding($false)
-$script:PackNames = @('mechanics', 'electrical', 'hydraulics', 'it')
+$script:PackNames = @('mechanics', 'electrical', 'hydraulics', 'it', 'lifting', 'automation')
 
 function Get-StbNorm([string]$s) {
     # Малки букви, без ударения (U+0300, U+0301), "ѝ" става "и".
@@ -85,7 +85,7 @@ function Get-StbConflicts([string]$dictDir) {
     if (Test-Path $f) {
         foreach ($cells in Get-StbTableRows $f) {
             if ($cells[0] -eq 'Дума') { continue }
-            [void]$set.Add((Get-StbNorm $cells[0]))
+            foreach ($w in ($cells[0] -split "[,/]")) { if ($w.Trim()) { [void]$set.Add((Get-StbNorm $w.Trim())) } }
         }
     }
     return , $set

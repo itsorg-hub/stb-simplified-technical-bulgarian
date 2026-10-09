@@ -10,8 +10,10 @@
 | Електрика и електроника | [electrical.md](electrical.md) | `electrical` |
 | Хидравлика и пневматика | [hydraulics.md](hydraulics.md) | `hydraulics` |
 | ИТ, мрежи и софтуер | [it.md](it.md) | `it` |
+| Подемна и мобилна техника | [lifting.md](lifting.md) | `lifting` |
+| Автоматизация и роботика | [automation.md](automation.md) | `automation` |
 
-Всички пакети: `-Domain all`. Няколко пакета: `-Domain mechanics,electrical`.
+Всички пакети: `-Domain all`. Няколко пакета: `-Domain mechanics,electrical`. Пакетите `lifting` и `automation` са създадени по анализ на реални документи (вж. [GAPS-v0.1.md](../GAPS-v0.1.md)).
 
 ## Правила за пакетите
 

@@ -52,11 +52,13 @@ foreach ($par in $paragraphs) {
         $line = $line -replace '^\s*(\d+\.|[-*•])\s+', ''
         # Защита на десетични числа и съкращения срещу разделяне на изречения
         $safe = [regex]::Replace($line, '(\d)[.,](\d)', '$1_$2')
+        # „бр." след число е позволено съкращение (правило 8.3) и не завършва изречение
+        $safe = [regex]::Replace($safe, '(\d\s*бр)\.(?=\s*[\p{L}\d/])', '$1~')
         $sentences = [regex]::Split($safe, '(?<=[.!?])\s+') | Where-Object { $_.Trim() }
         $firstInLine = $true
         foreach ($s in $sentences) {
             $sentNo++; $sentencesInPar++
-            $orig = $s.Replace('_', ',')
+            $orig = $s.Replace('_', ',').Replace('~', '.')
             $short = if ($orig.Length -gt 45) { $orig.Substring(0, 45) + '…' } else { $orig }
             $tag = "${sentNo}: $short"
             $tokens = Get-StbCyrillicTokens $orig
