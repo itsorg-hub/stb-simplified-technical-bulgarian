@@ -20,6 +20,13 @@ if ($LASTEXITCODE -ge 8) { throw "robocopy грешка: $LASTEXITCODE" }
 # robocopy /MIR би изтрил README.md/.htaccess/.gitignore в целта; /XF ги пази.
 Remove-Item (Join-Path $Deploy 'assets\fonts\README.md') -ErrorAction SilentlyContinue
 
+# Версия на стиловете в адреса, за да не се показва стар кеширан файл (CDN и браузър).
+$ver = Get-Date -Format 'yyyyMMddHHmmss'
+$idx = Join-Path $Deploy 'index.html'
+$html = [IO.File]::ReadAllText($idx, (New-Object Text.UTF8Encoding($false)))
+$html = [regex]::Replace($html, 'assets/css/style\.css(\?v=\w+)?', "assets/css/style.css?v=$ver")
+[IO.File]::WriteAllText($idx, $html, (New-Object Text.UTF8Encoding($false)))
+
 Push-Location $Deploy
 try {
     git add -A
