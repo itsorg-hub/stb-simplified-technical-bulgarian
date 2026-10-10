@@ -13,6 +13,8 @@ site/
     img/favicon.svg
     fonts/                # шрифтът Adys (не е в хранилището), вж. fonts/README.md
   tools/make-contours.mjs
+  tools/publish.ps1       # публикуване
+  DESIGN.md               # дизайн насоки
 ```
 
 ## Преглед на компютъра

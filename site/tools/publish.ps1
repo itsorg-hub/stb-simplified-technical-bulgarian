@@ -15,7 +15,7 @@ $fonts = Get-ChildItem (Join-Path $site 'assets\fonts') -Filter 'ADYS-*.woff*' -
 if (-not $fonts) { throw 'Липсват файловете на шрифта Adys в site\assets\fonts.' }
 
 # Копиране без README и tools; .htaccess, README.md и .gitignore в целевото хранилище не се пипат.
-$null = robocopy $site $Deploy /MIR /XD tools .git /XF README.md .htaccess .gitignore
+$null = robocopy $site $Deploy /MIR /XD tools .git /XF README.md DESIGN.md .htaccess .gitignore
 if ($LASTEXITCODE -ge 8) { throw "robocopy грешка: $LASTEXITCODE" }
 # robocopy /MIR би изтрил README.md/.htaccess/.gitignore в целта; /XF ги пази.
 Remove-Item (Join-Path $Deploy 'assets\fonts\README.md') -ErrorAction SilentlyContinue
