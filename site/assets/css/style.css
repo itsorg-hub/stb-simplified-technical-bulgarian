@@ -227,3 +227,6 @@ th { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; colo
 .js .to-top.show { opacity: 1; visibility: visible; transform: none; }
 @media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
 @media print { .to-top { display: none; } }
+
+/* Ред за авторски права в подвала */
+.credit .copy { color: #8fd3ff; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; }
