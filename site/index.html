@@ -17,7 +17,7 @@
 <link rel="preload" href="assets/fonts/ADYS-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body id="top">
 <a class="skip" href="#content">Към съдържанието</a>
 
 <div class="page">
@@ -27,7 +27,7 @@
   <div class="hero-art" aria-hidden="true"><img src="assets/img/contours.svg" alt="" width="900" height="900"></div>
 
   <div class="top">
-    <a class="brand" href="#top" id="top" aria-label="STB — начало">
+    <a class="brand" href="#top" aria-label="STB — начало">
       <svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38BDF8"/><stop offset="1" stop-color="#B07CFF"/></linearGradient></defs><g fill="none" stroke="url(#bm)" stroke-width="2"><ellipse cx="20" cy="20" rx="17" ry="15"/><ellipse cx="20" cy="20" rx="11" ry="9.5"/><ellipse cx="20" cy="20" rx="5.5" ry="4.5"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg>
       <span>STB<small>Опростен технически български</small></span>
     </a>
@@ -292,5 +292,9 @@ powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 `
 </footer>
 
 </div>
+
+<a class="to-top" href="#top" aria-label="Към началото на страницата" title="Към началото">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
+</a>
 </body>
 </html>

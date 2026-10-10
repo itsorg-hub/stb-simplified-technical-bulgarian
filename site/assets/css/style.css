@@ -208,3 +208,23 @@ th { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; colo
 .foot-links a { font-size: 0.97rem; }
 .credit { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line-soft); font-size: 0.86rem; color: var(--muted); display: grid; gap: 8px; max-width: none; }
 .credit p { max-width: 90ch; margin: 0; }
+
+/* Плаващ бутон „към началото": без скрипт. Появява се след скролиране (където браузърът поддържа scroll-driven анимации), иначе е винаги видим. */
+.to-top {
+  position: fixed; z-index: 40;
+  right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom));
+  width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%;
+  color: var(--text); text-decoration: none;
+  background: linear-gradient(#0b0d15, #0b0d15) padding-box, var(--grad) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 6px rgba(56, 189, 248, 0.0);
+  transition: box-shadow 0.2s, filter 0.2s;
+}
+.to-top svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.to-top:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 6px rgba(56, 189, 248, 0.18); filter: brightness(1.15); }
+@supports (animation-timeline: scroll()) {
+  .to-top { opacity: 0; pointer-events: none; animation: to-top-in linear both; animation-timeline: scroll(root); animation-range: 320px 560px; }
+  @keyframes to-top-in { from { opacity: 0; transform: translateY(14px); pointer-events: none; } to { opacity: 1; transform: none; pointer-events: auto; } }
+}
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } @supports (animation-timeline: scroll()) { .to-top { animation-name: to-top-fade; } @keyframes to-top-fade { from { opacity: 0; pointer-events: none; } to { opacity: 1; pointer-events: auto; } } } }
+@media print { .to-top { display: none; } }
