@@ -31,7 +31,7 @@ node -e "require('http').createServer((q,r)=>require('fs').createReadStream('.'+
 1. Редактирайте файловете в site/ (шрифтът е локално в site/assets/fonts/).
 2. Пуснете: `powershell -ExecutionPolicy Bypass -File site\tools\publish.ps1 -Message "Какво е променено"`
 3. Скриптът копира файловете в C:\Claude\stb-site, записва и качва в GitHub.
-4. Hostinger изтегля промяната (автоматично при push, ако е включено автоматичното качване в hPanel, иначе от Git в hPanel).
+4. Push към `main` на `stb-site` задейства webhook на Hostinger, който изтегля промяната в `public_html/stb` за няколко секунди. Ако нещо не стане, натиснете Deploy в hPanel (Advanced, Git) или проверете доставките на webhook в GitHub (Settings, Webhooks на `stb-site`).
 
 За ръчно качване използвайте съдържанието на site/ и шрифта в public_html/stb.
 
