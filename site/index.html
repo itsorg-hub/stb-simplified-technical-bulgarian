@@ -15,6 +15,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/ADYS-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/ADYS-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add("js");</script>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body id="top">
@@ -296,5 +297,13 @@ powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 `
 <a class="to-top" href="#top" aria-label="Към началото на страницата" title="Към началото">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
 </a>
+<script>
+(function () {
+  var b = document.querySelector(".to-top"); if (!b) return;
+  var on = false;
+  function u() { var s = (window.pageYOffset || document.documentElement.scrollTop) > 400; if (s !== on) { on = s; b.classList.toggle("show", s); } }
+  window.addEventListener("scroll", u, { passive: true }); u();
+})();
+</script>
 </body>
 </html>

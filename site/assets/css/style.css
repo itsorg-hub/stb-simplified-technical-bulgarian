@@ -26,7 +26,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { overflow-x: clip; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -62,11 +62,12 @@ code, pre { font-family: "Cascadia Mono", Consolas, "Courier New", monospace; fo
 .skip:focus { top: 12px; }
 
 /* Оформление на страницата: панели като в референцията, но с наш контур и цвят */
-.page { max-width: 1320px; margin: 0 auto; padding: clamp(10px, 2vw, 24px); display: grid; gap: clamp(10px, 2vw, 24px); }
+.page { max-width: 1320px; margin: 0 auto; padding: clamp(10px, 2vw, 24px) clamp(10px, 2vw, 24px) clamp(10px, 1.5vw, 16px); display: grid; gap: clamp(10px, 2vw, 24px); }
 .panel {
   position: relative; overflow: hidden; background: var(--panel);
   border: 1px solid var(--line-soft); border-radius: var(--radius);
-  padding: clamp(36px, 7vw, 96px) var(--gutter);
+  padding: clamp(32px, 6vw, 72px) var(--gutter);
+  contain: paint;
   box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.8);
 }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 20px; }
@@ -199,6 +200,7 @@ th { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; colo
 
 /* Футър */
 .foot { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: start; }
+#company { padding-block: clamp(28px, 4vw, 48px); }
 @media (max-width: 960px) { .foot { grid-template-columns: 1fr; } }
 .plate { display: inline-block; background: #e9edf3; border-radius: 18px; padding: 14px 22px; margin-bottom: 20px; }
 .plate img { width: 210px; height: auto; }
@@ -206,25 +208,22 @@ th { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; colo
 .foot p, .foot address { font-size: 0.97rem; color: #d3d8e8; font-style: normal; margin-bottom: 8px; }
 .foot-links { list-style: none; display: grid; gap: 8px; }
 .foot-links a { font-size: 0.97rem; }
-.credit { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line-soft); font-size: 0.86rem; color: var(--muted); display: grid; gap: 8px; max-width: none; }
+.credit { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line-soft); font-size: 0.86rem; color: var(--muted); display: grid; gap: 8px; max-width: none; }
 .credit p { max-width: 90ch; margin: 0; }
 
-/* Плаващ бутон „към началото": без скрипт. Появява се след скролиране (където браузърът поддържа scroll-driven анимации), иначе е винаги видим. */
+/* Плаващ бутон „към началото". Без скрипт е винаги видим; със скрипт се показва след скролиране. */
 .to-top {
   position: fixed; z-index: 40;
-  right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom));
-  width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%;
-  color: var(--text); text-decoration: none;
-  background: linear-gradient(#0b0d15, #0b0d15) padding-box, var(--grad) border-box;
-  border: 1.5px solid transparent;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 6px rgba(56, 189, 248, 0.0);
-  transition: box-shadow 0.2s, filter 0.2s;
+  right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom));
+  width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%;
+  color: var(--on-accent); text-decoration: none;
+  background: linear-gradient(135deg, var(--cyan), #7f8cff 70%, var(--violet));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 0 5px rgba(56, 189, 248, 0.18);
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s, box-shadow 0.2s, filter 0.2s;
 }
-.to-top svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.to-top:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 6px rgba(56, 189, 248, 0.18); filter: brightness(1.15); }
-@supports (animation-timeline: scroll()) {
-  .to-top { opacity: 0; pointer-events: none; animation: to-top-in linear both; animation-timeline: scroll(root); animation-range: 320px 560px; }
-  @keyframes to-top-in { from { opacity: 0; transform: translateY(14px); pointer-events: none; } to { opacity: 1; transform: none; pointer-events: auto; } }
-}
-@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } @supports (animation-timeline: scroll()) { .to-top { animation-name: to-top-fade; } @keyframes to-top-fade { from { opacity: 0; pointer-events: none; } to { opacity: 1; pointer-events: auto; } } } }
+.to-top svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.to-top:hover { filter: brightness(1.1); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 0 8px rgba(56, 189, 248, 0.28); }
+.js .to-top { opacity: 0; visibility: hidden; transform: translateY(14px); }
+.js .to-top.show { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
 @media print { .to-top { display: none; } }
