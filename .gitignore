@@ -15,3 +15,9 @@ cand-words.tsv
 rev.txt
 senses.tsv
 scratch*
+
+# Шрифтът Adys е лицензиран отделно и не се публикува в хранилището
+site/assets/fonts/*.woff
+site/assets/fonts/*.woff2
+site/assets/fonts/*.ttf
+site/assets/fonts/*.otf
