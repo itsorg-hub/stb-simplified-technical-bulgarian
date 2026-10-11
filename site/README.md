@@ -9,12 +9,14 @@ site/
   index.html
   assets/
     css/style.css
+    css/design.css        # само за страницата с насоки
     img/contours.svg      # генерира се от tools/make-contours.mjs
     img/favicon.svg
     fonts/                # шрифтът Adys (не е в хранилището), вж. fonts/README.md
   tools/make-contours.mjs
   tools/publish.ps1       # публикуване
-  DESIGN.md               # дизайн насоки
+  DESIGN.md               # дизайн насоки (текст)
+  design/index.html       # дизайн насоки (визуална страница, https://it-s.org/stb/design/)
 ```
 
 ## Преглед на компютъра

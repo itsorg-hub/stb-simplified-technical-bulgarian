@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дизайн насоки — STB</title>
+<meta name="description" content="Дизайн насоки на страницата на STB: идея, цветове, шрифт, подредба, компоненти, контурен образ, тон и достъпност.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://it-s.org/stb/design/">
+<meta name="theme-color" content="#04050a">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/ADYS-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/ADYS-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/design.css">
+</head>
+<body id="top">
+<a class="skip" href="#content">Към съдържанието</a>
+
+<div class="page">
+
+<!-- ============ ВЪВЕДЕНИЕ ============ -->
+<header class="panel hero dg-hero">
+  <div class="hero-art" aria-hidden="true"><img src="../assets/img/contours.svg" alt="" width="900" height="900"></div>
+  <div class="top">
+    <a class="brand" href="../" aria-label="STB — към страницата на проекта">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38BDF8"/><stop offset="1" stop-color="#B07CFF"/></linearGradient></defs><g fill="none" stroke="url(#bm)" stroke-width="2"><ellipse cx="20" cy="20" rx="17" ry="15"/><ellipse cx="20" cy="20" rx="11" ry="9.5"/><ellipse cx="20" cy="20" rx="5.5" ry="4.5"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg>
+      <span>STB<small>Дизайн насоки</small></span>
+    </a>
+    <a class="btn btn-ghost" href="../">← Към проекта</a>
+  </div>
+  <div class="dg-body" id="content">
+    <p class="eyebrow">Версия 1.0 · страница it-s.org/stb</p>
+    <h1>Дизайн<br>насоки<span class="dot">.</span></h1>
+    <p class="lead">Как изглежда, как се държи и как говори страницата на STB. Всичко на едно място: цветове, шрифт, подредба, компоненти и правила.</p>
+  </div>
+  <ul class="index" aria-label="Съдържание">
+    <li><a href="#idea">Идея и принципи</a></li>
+    <li><a href="#colors">Цветове</a></li>
+    <li><a href="#type">Шрифт</a></li>
+    <li><a href="#layout">Подредба</a></li>
+    <li><a href="#components">Компоненти</a></li>
+    <li><a href="#contours">Контури и знак</a></li>
+    <li><a href="#voice">Тон</a></li>
+    <li><a href="#a11y">Достъпност</a></li>
+    <li><a href="#tokens">Токени</a></li>
+  </ul>
+</header>
+
+<main>
+<div class="page" style="padding:0">
+
+<!-- ============ ИДЕЯ ============ -->
+<section class="panel" id="idea" aria-labelledby="idea-h">
+  <p class="eyebrow">01 · Идея и принципи</p>
+  <h2 id="idea-h">Един термин.<br>Едно значение<span class="dot">.</span></h2>
+  <p class="sec-intro">Много възможни значения се събират в едно. Затова основният образ са контурни линии, които се стесняват към една светеща точка. Характерът е спокоен, точен и технически: тъмен фон, много въздух, едър текст и малко цветове.</p>
+  <ol class="principles">
+    <li><b>Яснота пред украса</b><span>Всеки елемент има задача. Без снимки, без излишни анимации.</span></li>
+    <li><b>Малко, но ясно</b><span>Едно основно действие на екран. Минимално меню.</span></li>
+    <li><b>Четимост преди всичко</b><span>Шрифт за дислексия, едър текст, разредени редове.</span></li>
+    <li><b>Без проследяване</b><span>Няма бисквитки, анализ, външни шрифтове и услуги.</span></li>
+    <li><b>Говори като STB</b><span>Кратки изречения, една мисъл в абзац, конкретни числа.</span></li>
+  </ol>
+</section>
+
+<!-- ============ ЦВЕТОВЕ ============ -->
+<section class="panel" id="colors" aria-labelledby="colors-h">
+  <p class="eyebrow">02 · Цветове</p>
+  <h2 id="colors-h">Тъмна основа,<br>един градиент<span class="dot">.</span></h2>
+  <p class="sec-intro">Палитрата е малка нарочно. Цветът е акцент, не украса. Подписът на марката е градиентът циан → синьо → виолетово.</p>
+
+  <h3 class="sub-h">Повърхности</h3>
+  <div class="sw-grid">
+    <div class="sw"><div class="chip on-dark" style="background:#04050A"></div><div class="txt"><b>Фон на страницата</b><code>--ink · #04050A</code><span>Задна повърхност зад панелите.</span></div></div>
+    <div class="sw"><div class="chip on-dark" style="background:#07080E"></div><div class="txt"><b>Панел</b><code>--panel · #07080E</code><span>Големите секции.</span></div></div>
+    <div class="sw"><div class="chip on-dark" style="background:#0C0E16"></div><div class="txt"><b>Карта</b><code>--card · #0C0E16</code><span>Карти, редове, блокове в панела.</span></div></div>
+    <div class="sw"><div class="chip on-dark" style="background:#0B1220"></div><div class="txt"><b>Карта „STB“</b><code>#0B1220</code><span>Десният блок в сравнението „Не така → STB“.</span></div></div>
+  </div>
+
+  <h3 class="sub-h">Текст</h3>
+  <div class="sw-grid">
+    <div class="sw"><div class="chip" style="background:#F3F5FB"></div><div class="txt"><b>Текст</b><code>--text · #F3F5FB</code><span>Основен текст.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#AAB1C5"></div><div class="txt"><b>Приглушен текст</b><code>--muted · #AAB1C5</code><span>Подзаглавия и пояснения.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#8FD3FF"></div><div class="txt"><b>Авторски ред</b><code>#8FD3FF</code><span>Ред за авторски права в подвала.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#04121B"></div><div class="txt"><b>Текст върху акцент</b><code>--on-accent · #04121B</code><span>Тъмен текст в бутони с градиент.</span></div></div>
+  </div>
+
+  <h3 class="sub-h">Акценти</h3>
+  <div class="sw-grid">
+    <div class="sw"><div class="chip" style="background:#38BDF8"></div><div class="txt"><b>Циан</b><code>--cyan · #38BDF8</code><span>Основен акцент: точки, връзки, фокус.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#6D7CFF"></div><div class="txt"><b>Синьо</b><code>--blue · #6D7CFF</code><span>Среда на градиента.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#B07CFF"></div><div class="txt"><b>Виолетово</b><code>--violet · #B07CFF</code><span>Край на градиента.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FF9A9A"></div><div class="txt"><b>Не така</b><code>--bad · #FF9A9A</code><span>Етикет „Не така“. Винаги с надпис.</span></div></div>
+    <div class="sw"><div class="chip" style="background:#7DE3B1"></div><div class="txt"><b>Добро</b><code>--good · #7DE3B1</code><span>Етикет „STB“. Винаги с надпис.</span></div></div>
+  </div>
+
+  <h3 class="sub-h">Градиент и светлини</h3>
+  <div class="gradbar" role="img" aria-label="Градиент от циан през синьо до виолетово"><span>#38BDF8</span><span>#6D7CFF · 55%</span><span>#B07CFF</span></div>
+  <div class="glows">
+    <div class="glow v">Виолетова светлина долу вдясно · rgba(104, 62, 255, .5)</div>
+    <div class="glow c">Циан светлина горе вляво · rgba(56, 189, 248, .2)</div>
+  </div>
+  <p class="sec-intro" style="margin-top:18px">Градиентът е за линии, числа, бутони, контури и рамки. Не се ползва за големи цветни полета. Двете светлини стоят зад страницата и дават дълбочина без снимка.</p>
+</section>
+
+<!-- ============ ШРИФТ ============ -->
+<section class="panel" id="type" aria-labelledby="type-h">
+  <p class="eyebrow">03 · Шрифт</p>
+  <h2 id="type-h">Adys, за по-лесно<br>четене<span class="dot">.</span></h2>
+  <p class="sec-intro">Adys е проектиран да улеснява четенето при лека до средна дислексия и поддържа кирилица. Закупен е лиценз на Innovative Technology Solutions. Файловете са само на сървъра и в частното хранилище, не в публичното.</p>
+
+  <div class="weights">
+    <div><span class="big" style="font-weight:400">Аа</span><b>Regular · 400</b><small>Основен текст</small></div>
+    <div><span class="big" style="font-weight:500">Аа</span><b>Medium · 500</b><small>Малки етикети, меню</small></div>
+    <div><span class="big" style="font-weight:700">Аа</span><b>Bold · 700</b><small>Заглавия, бутони, числа</small></div>
+    <div><span class="big" style="font-style:italic">Аа</span><b>Italic · 400</b><small>Цитати и примери</small></div>
+  </div>
+
+  <div class="glyphs" aria-label="Азбука и цифри">
+    <p>АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ</p>
+    <p>абвгдежзийклмнопрстуфхцчшщъьюя</p>
+    <p class="digits">0123456789 · № % ± ° ² ³ N·m</p>
+  </div>
+
+  <h3 class="sub-h">Скала</h3>
+  <div class="scale">
+    <div class="row"><div class="lbl"><b>H1</b>clamp(3.1rem, 9.4vw, 7.4rem)<br>тегло 700 · ред .98</div><p class="smp" style="font-size:clamp(2.6rem,6vw,4.6rem);font-weight:700;line-height:1">Един термин<span class="dot">.</span></p></div>
+    <div class="row"><div class="lbl"><b>H2</b>clamp(2rem, 4.2vw, 3.4rem)<br>тегло 700 · ред 1.08</div><p class="smp" style="font-size:clamp(1.8rem,3.6vw,3rem);font-weight:700;line-height:1.08">Как работи<span class="dot">.</span></p></div>
+    <div class="row"><div class="lbl"><b>H3</b>1.35 – 1.8rem<br>тегло 700</div><p class="smp" style="font-size:1.6rem;font-weight:700">А при нас?</p></div>
+    <div class="row"><div class="lbl"><b>Увод (lead)</b>clamp(1.15rem, 1.1vw + .9rem, 1.4rem)<br>ред 1.6</div><p class="smp lead" style="margin:0">STB е контролиран български език за технически текстове.</p></div>
+    <div class="row"><div class="lbl"><b>Основен текст</b>clamp(1.0625rem, .4vw + 1rem, 1.1875rem)<br>ред 1.7 · разстояние .01em</div><p class="smp">Кратки изречения, една мисъл в абзац и конкретни числа вместо „много“. Редът е до 62 знака.</p></div>
+    <div class="row"><div class="lbl"><b>Горен надпис</b>.82rem · главни букви<br>разстояние .14em · тегло 500</div><p class="smp eyebrow" style="margin:0">Отворен проект · v0.1</p></div>
+    <div class="row"><div class="lbl"><b>Пояснение</b>.93 – .98rem<br>цвят <span class="tag">--muted</span></div><p class="smp" style="color:var(--muted);font-size:.96rem">Версия v0.1 е чернова и не е проверена от езиковеди.</p></div>
+  </div>
+  <p class="sec-intro" style="margin-top:18px">Заглавията са кратки и завършват с точка в цвят <span class="tag">--cyan</span>. Заглавията ползват <span class="tag">text-wrap: balance</span>, абзаците <span class="tag">pretty</span>. Резервен шрифт: Segoe UI, system-ui. Бележката за шрифта с връзка към www.adysfont.com остава в подвала.</p>
+</section>
+
+<!-- ============ ПОДРЕДБА ============ -->
+<section class="panel" id="layout" aria-labelledby="layout-h">
+  <p class="eyebrow">04 · Подредба</p>
+  <h2 id="layout-h">Панели<br>и въздух<span class="dot">.</span></h2>
+  <p class="sec-intro">Страницата е поредица от тъмни панели със заоблени ъгли. Всяка секция е отделен панел, а вътре съдържанието е в карти.</p>
+
+  <div class="panel-demo" role="img" aria-label="Схема на панел с вътрешна карта">
+    <span class="lab">Панел · радиус 28 px</span>
+    <div class="inner-card">Карта · радиус 22 px · отстъп 28 – 30 px · рамка <span class="tag">--line-soft</span></div>
+  </div>
+
+  <div class="demo-grid" style="margin-top:28px">
+    <div>
+      <h3 class="sub-h">Размери</h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Елемент</th><th scope="col">Стойност</th></tr></thead>
+        <tbody>
+          <tr><td>Максимална ширина</td><td>1320 px</td></tr>
+          <tr><td>Отстъп на страницата</td><td><span class="tag">clamp(10px, 2vw, 24px)</span></td></tr>
+          <tr><td>Разстояние между панели</td><td><span class="tag">clamp(10px, 2vw, 24px)</span></td></tr>
+          <tr><td>Отстъп на панел, вертикално</td><td><span class="tag">clamp(32px, 6vw, 72px)</span></td></tr>
+          <tr><td>Отстъп на панел, хоризонтално</td><td><span class="tag">clamp(20px, 5vw, 64px)</span></td></tr>
+          <tr><td>Радиус на панел / карта</td><td>28 px / 22 px</td></tr>
+          <tr><td>Подвал, вертикален отстъп</td><td><span class="tag">clamp(28px, 4vw, 48px)</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub-h">Скала на отстоянията</h3>
+      <div class="spaces" role="img" aria-label="Скала на отстоянията от 8 до 72 пиксела">
+        <div><b>8</b><i style="width:8px"></i></div>
+        <div><b>12</b><i style="width:12px"></i></div>
+        <div><b>16</b><i style="width:16px"></i></div>
+        <div><b>24</b><i style="width:24px"></i></div>
+        <div><b>32</b><i style="width:32px"></i></div>
+        <div><b>48</b><i style="width:48px"></i></div>
+        <div><b>72</b><i style="width:72px"></i></div>
+      </div>
+      <h3 class="sub-h">Брейкпойнти</h3>
+      <p class="sec-intro" style="margin-bottom:0"><span class="tag">1000</span> <span class="tag">960</span> <span class="tag">900</span> <span class="tag">860 · меню</span> <span class="tag">700</span> <span class="tag">640</span> px. Карти: 3 колони над 900, 2 до 640, 1 под това. Двоколонни секции над 960.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОМПОНЕНТИ ============ -->
+<section class="panel" id="components" aria-labelledby="comp-h">
+  <p class="eyebrow">05 · Компоненти</p>
+  <h2 id="comp-h">Малко елементи,<br>повтаряни<span class="dot">.</span></h2>
+
+  <div class="demo">
+    <div class="cap"><span>Бутони</span><span class="tag">.btn .btn-primary / .btn-ghost</span></div>
+    <div class="cta">
+      <a class="btn btn-primary" href="#components">Виж проекта в GitHub <span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href="#components">Как работи</a>
+    </div>
+    <p class="sec-intro" style="margin:16px 0 0;font-size:.95rem;color:var(--muted)">Форма „таблетка“. Основният е с градиент и тъмен текст, контурният е с бяла рамка 55%. Най-много два до един друг.</p>
+  </div>
+
+  <div class="demo">
+    <div class="cap"><span>Меню</span><span class="tag">.nav</span></div>
+    <nav class="nav" aria-label="Пример за меню" style="display:flex;flex-wrap:wrap">
+      <a href="#components">Идеята</a><a href="#components">Как работи</a><a href="#components">Приложения</a><a href="#components">Участвай</a>
+      <a class="btn btn-primary" href="#components">GitHub</a>
+    </nav>
+    <p class="sec-intro" style="margin:16px 0 0;font-size:.95rem;color:var(--muted)">Малки връзки с главни букви. Под 860 px менюто е падащо (<span class="tag">&lt;details&gt;</span>, без скрипт).</p>
+  </div>
+
+  <div class="demo-grid">
+    <div class="demo">
+      <div class="cap"><span>Горен надпис и карта</span><span class="tag">.eyebrow .card</span></div>
+      <p class="eyebrow">Как работи</p>
+      <article class="card">
+        <span class="num grad">01</span>
+        <h3>Правила</h3>
+        <p>58 правила в 9 раздела. Една команда в изречение.</p>
+        <a class="more" href="#components">Прочети правилата <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+    <div class="demo">
+      <div class="cap"><span>Хронология</span><span class="tag">.timeline</span></div>
+      <ol class="timeline">
+        <li><b>1985</b><p>AECMA публикува Simplified English Guide.</p></li>
+        <li><b>2026</b><p>STB v0.1: първата отворена чернова за български.</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="demo">
+    <div class="cap"><span>Сравнение „Не така → STB“</span><span class="tag">.cmp</span></div>
+    <ul class="cmp">
+      <li><div class="no"><small>Не така</small><q>Болтът се затяга.</q></div><div class="yes"><small>STB</small><q>Затегнете болта.</q></div></li>
+      <li><div class="no"><small>Не така</small><q>Затегнете добре.</q></div><div class="yes"><small>STB</small><q>Затегнете с момент 25 N·m.</q></div></li>
+    </ul>
+  </div>
+
+  <div class="demo-grid">
+    <div class="demo">
+      <div class="cap"><span>Таблетки</span><span class="tag">.pills</span></div>
+      <ul class="pills"><li>Механика и монтаж</li><li>Електрика и електроника</li><li>ИТ и софтуер</li></ul>
+    </div>
+    <div class="demo">
+      <div class="cap"><span>Бележки и значки</span><span class="tag">.note .badge</span></div>
+      <p class="note" style="margin-bottom:14px">Моделите грешат. Проверявайте резултата.</p>
+      <a class="badge" href="#components">CC BY-SA 4.0</a> <a class="badge" href="#components">MIT</a>
+    </div>
+  </div>
+
+  <div class="demo">
+    <div class="cap"><span>Блок с код</span><span class="tag">pre &gt; code</span></div>
+<pre><code><span class="c"># Проверка на текст (Windows PowerShell)</span>
+powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 `
+  -Text "1. Затегнете гайката с 25 N·m." -Domain mechanics</code></pre>
+  </div>
+
+  <div class="demo-grid">
+    <div class="demo">
+      <div class="cap"><span>Бутон „към началото“</span><span class="tag">.to-top · 58 px</span></div>
+      <div class="brand-row">
+        <span class="to-top-demo" role="img" aria-label="Бутон към началото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg></span>
+        <p style="margin:0;color:var(--muted);font-size:.95rem">Фиксиран долу вдясно. Скрит на началото, показва се след 400 px скрол. Без скрипт остава видим.</p>
+      </div>
+    </div>
+    <div class="demo">
+      <div class="cap"><span>Знак на марката</span><span class="tag">favicon.svg</span></div>
+      <div class="brand-row">
+        <svg class="mark" viewBox="0 0 40 40" aria-label="Знак: три вложени елипси и точка"><defs><linearGradient id="bm2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38BDF8"/><stop offset="1" stop-color="#B07CFF"/></linearGradient></defs><g fill="none" stroke="url(#bm2)" stroke-width="2"><ellipse cx="20" cy="20" rx="17" ry="15"/><ellipse cx="20" cy="20" rx="11" ry="9.5"/><ellipse cx="20" cy="20" rx="5.5" ry="4.5"/></g><circle cx="20" cy="20" r="2.2" fill="#fff"/></svg>
+        <img class="fav" src="../assets/img/favicon.svg" alt="Икона на страницата" width="56" height="56">
+        <p style="margin:0;color:var(--muted);font-size:.95rem">Три вложени елипси с градиент и бяла точка. Същият знак е иконата на страницата.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОНТУРИ ============ -->
+<section class="panel" id="contours" aria-labelledby="cont-h">
+  <p class="eyebrow">06 · Контурен образ</p>
+  <h2 id="cont-h">Много линии,<br>една точка<span class="dot">.</span></h2>
+  <div class="contour-wrap">
+    <div class="contour-view"><img src="../assets/img/contours.svg" alt="Контурни линии, които се събират в една светеща точка" width="900" height="900" loading="lazy"></div>
+    <ul class="facts-list">
+      <li>26 вложени гладки криви, които се стесняват към бяла точка със син ореол.</li>
+      <li>Линиите са с градиент циан → синьо → виолетово. Вътрешните са по-плътни и по-дебели, външните по-прозрачни и по-тънки.</li>
+      <li>Генерира се от <span class="tag">tools/make-contours.mjs</span>. Скриптът е детерминиран, така че образът е един и същ при всяко пускане.</li>
+      <li>Употреба: голям фон в началния панел (бавно въртене), по-блед фон в панела „Участвай“. Не зад дълъг текст със слаб контраст.</li>
+      <li>Промяна: редактирайте константите (брой линии, радиус, неравност), пуснете <span class="tag">node tools/make-contours.mjs</span> и публикувайте.</li>
+    </ul>
+  </div>
+  <h3 class="sub-h" style="margin-top:44px">Движение</h3>
+  <ul class="facts-list">
+    <li>Само две движения: бавно въртене на контурите (180 s) и плавно показване на бутона „към началото“.</li>
+    <li>Преходи 0.2 – 0.25 s. Без забавяния и подскачания.</li>
+    <li>При <span class="tag">prefers-reduced-motion</span> въртенето спира и преходите се изключват.</li>
+  </ul>
+</section>
+
+<!-- ============ ТОН ============ -->
+<section class="panel" id="voice" aria-labelledby="voice-h">
+  <p class="eyebrow">07 · Тон на текста</p>
+  <h2 id="voice-h">Говори като<br>STB<span class="dot">.</span></h2>
+  <p class="sec-intro">Българският текст следва собствените правила на проекта: кратки изречения (до 20 думи), активен залог, повелително наклонение при призиви, една мисъл в абзац.</p>
+  <div class="voice">
+    <div class="box no"><h4>Не така</h4><ul>
+      <li>Страницата се опитва да предостави на потребителите възможност за многостранно използване.</li>
+      <li>Много думи, много правила и доста области.</li>
+      <li>Натиснете тук, за да научите повече.</li>
+    </ul></div>
+    <div class="box yes"><h4>STB</h4><ul>
+      <li>STB е набор от текстови файлове. Работи с всеки изкуствен интелект и без него.</li>
+      <li>58 правила, над 600 думи, 6 области.</li>
+      <li>Виж проекта в GitHub.</li>
+    </ul></div>
+  </div>
+  <ul class="facts-list" style="margin-top:24px">
+    <li>Заглавие с точка. Бутони с глагол: „Виж проекта“, „Отвори issue“.</li>
+    <li>Конкретни числа вместо „много“. Реални примери от проекта.</li>
+    <li>Честно за ограниченията: чернова v0.1, неофициална публикация, без връзка с ASD и БАН. Този текст е винаги видим.</li>
+  </ul>
+</section>
+
+<!-- ============ ДОСТЪПНОСТ ============ -->
+<section class="panel" id="a11y" aria-labelledby="a11y-h">
+  <p class="eyebrow">08 · Достъпност</p>
+  <h2 id="a11y-h">Четим за<br>всички<span class="dot">.</span></h2>
+  <p class="sec-intro">Контрастите са изчислени по формулата на WCAG. Всички двойки отговарят на AA (над 4.5:1), а повечето и на AAA (над 7:1).</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th scope="col">Двойка</th><th scope="col">Образец</th><th scope="col">Контраст</th><th scope="col">Оценка</th></tr></thead>
+    <tbody>
+      <tr><td>Основен текст върху панел</td><td><span class="sample" style="background:#07080E;color:#F3F5FB">Aa Текст</span></td><td class="ratio">18.3 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Основен текст върху карта</td><td><span class="sample" style="background:#0C0E16;color:#F3F5FB">Aa Текст</span></td><td class="ratio">17.7 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Приглушен текст върху панел</td><td><span class="sample" style="background:#07080E;color:#AAB1C5">Aa Пояснение</span></td><td class="ratio">9.3 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Приглушен текст върху карта</td><td><span class="sample" style="background:#0C0E16;color:#AAB1C5">Aa Пояснение</span></td><td class="ratio">9.0 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Циан върху панел</td><td><span class="sample" style="background:#07080E;color:#38BDF8">Aa Връзка</span></td><td class="ratio">9.3 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Авторски ред върху панел</td><td><span class="sample" style="background:#07080E;color:#8FD3FF">Aa © 2026</span></td><td class="ratio">12.3 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Тъмен текст върху циан</td><td><span class="sample" style="background:#38BDF8;color:#04121B">Aa Бутон</span></td><td class="ratio">8.9 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>Тъмен текст върху синьо-виолетово</td><td><span class="sample" style="background:#7F8CFF;color:#04121B">Aa Бутон</span></td><td class="ratio">6.4 : 1</td><td><span class="pass">AA</span></td></tr>
+      <tr><td>Тъмен текст върху виолетово</td><td><span class="sample" style="background:#B07CFF;color:#04121B">Aa Бутон</span></td><td class="ratio">6.5 : 1</td><td><span class="pass">AA</span></td></tr>
+      <tr><td>„Не така“ върху карта</td><td><span class="sample" style="background:#0C0E16;color:#FF9A9A">Не така</span></td><td class="ratio">9.5 : 1</td><td><span class="pass">AAA</span></td></tr>
+      <tr><td>„STB“ върху синя карта</td><td><span class="sample" style="background:#0B1220;color:#7DE3B1">STB</span></td><td class="ratio">12.0 : 1</td><td><span class="pass">AAA</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul class="facts-list" style="margin-top:28px">
+    <li>Език на страницата <span class="tag">lang="bg"</span>. Връзка „Към съдържанието“ за клавиатура.</li>
+    <li>Видим фокус: 3 px циан контур. Цел за натискане най-малко 44 px.</li>
+    <li>Декоративните изображения са с <span class="tag">alt=""</span> и <span class="tag">aria-hidden</span>. Цветът не е единственият носител на смисъл.</li>
+    <li>При намалена анимация въртенето и преходите се изключват.</li>
+  </ul>
+
+  <h3 class="sub-h" style="margin-top:44px">Какво да избягвате</h3>
+  <ul class="donts">
+    <li>Нови цветове извън палитрата, снимки на хора, готови илюстрации и емотикони.</li>
+    <li>Светла тема или бели панели. Страницата е само тъмна.</li>
+    <li>Текст върху контурите без достатъчен контраст.</li>
+    <li>Постоянни анимации близо до текста.</li>
+    <li>Външни библиотеки, бисквитки, анализ, формуляри и бази данни.</li>
+    <li>Файловете на шрифта в публично хранилище.</li>
+  </ul>
+</section>
+
+<!-- ============ ТОКЕНИ ============ -->
+<section class="panel" id="tokens" aria-labelledby="tok-h">
+  <p class="eyebrow">09 · Токени</p>
+  <h2 id="tok-h">Готови за<br>копиране<span class="dot">.</span></h2>
+  <p class="sec-intro">Това са променливите, на които се държи цялата страница. Ползвайте ги в нови страници на проекта.</p>
+<pre><code>:root {
+  --ink: #04050a;
+  --panel: #07080e;
+  --card: #0c0e16;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-soft: rgba(255, 255, 255, 0.07);
+  --text: #f3f5fb;
+  --muted: #aab1c5;
+  --cyan: #38bdf8;
+  --blue: #6d7cff;
+  --violet: #b07cff;
+  --on-accent: #04121b;
+  --bad: #ff9a9a;
+  --good: #7de3b1;
+  --grad: linear-gradient(90deg, var(--cyan), var(--blue) 55%, var(--violet));
+  --radius: 28px;
+  --gutter: clamp(20px, 5vw, 64px);
+}</code></pre>
+  <p class="sec-intro" style="margin-top:22px">Пълният текст на насоките е в хранилището: <a href="https://github.com/itsorg-hub/stb-simplified-technical-bulgarian/blob/main/site/DESIGN.md" rel="noopener">site/DESIGN.md</a>.</p>
+</section>
+
+</div>
+</main>
+
+<footer class="panel dg-foot">
+  <p>Дизайн насоки на STB · версия 1.0 · © 2026 Innovative Technology Solutions LTD, Emil Lichev и участниците в STB.</p>
+  <p>Тези насоки са под CC BY-SA 4.0. Шрифтът Adys не е включен в хранилището и е лицензиран отделно. <a href="../">← Към страницата на проекта</a></p>
+</footer>
+
+</div>
+</body>
+</html>

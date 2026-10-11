@@ -22,10 +22,12 @@ Remove-Item (Join-Path $Deploy 'assets\fonts\README.md') -ErrorAction SilentlyCo
 
 # Версия на стиловете в адреса, за да не се показва стар кеширан файл (CDN и браузър).
 $ver = Get-Date -Format 'yyyyMMddHHmmss'
-$idx = Join-Path $Deploy 'index.html'
-$html = [IO.File]::ReadAllText($idx, (New-Object Text.UTF8Encoding($false)))
-$html = [regex]::Replace($html, 'assets/css/style\.css(\?v=\w+)?', "assets/css/style.css?v=$ver")
-[IO.File]::WriteAllText($idx, $html, (New-Object Text.UTF8Encoding($false)))
+$enc = New-Object Text.UTF8Encoding($false)
+foreach ($h in (Get-ChildItem $Deploy -Filter '*.html' -Recurse | Where-Object { $_.FullName -notmatch '[\\/]\.git[\\/]' })) {
+    $t = [IO.File]::ReadAllText($h.FullName, $enc)
+    $t2 = [regex]::Replace($t, 'assets/css/(style|design)\.css(\?v=\w+)?', "assets/css/`$1.css?v=`$ver")
+    if ($t2 -ne $t) { [IO.File]::WriteAllText($h.FullName, $t2, $enc) }
+}
 
 Push-Location $Deploy
 try {
