@@ -1,12 +1,12 @@
 # STB — Опростен технически български
 
-**Версия v0.2 (чернова) · Неофициална публикация**
+**Версия v0.3 (чернова) · Неофициална публикация**
 
 Контролиран български език за технически текстове: инструкции, монтаж, чертежи, спецификации. Цел — всяко изречение да има едно възможно тълкуване.
 
 Вдъхновен от [ASD-STE100](https://www.asd-ste100.org) (Simplified Technical English), но с правила, пригодени за българския език. Това е **неофициална** инициатива: проектът не е свързан с ASD и не е одобрен от тях, нито от Института за български език при БАН.
 
-> **Статус v0.2.** Правилата не са проверени от езиковеди и не са изпитани върху реална документация. Речникът се изгражда.
+> **Статус v0.3.** Правилата не са проверени от езиковеди и не са изпитани върху реална документация. Речникът се изгражда.
 
 ## Кой работи по проекта
 
@@ -26,7 +26,7 @@
 ## Съдържание
 
 - [`docs/rules.md`](docs/rules.md) — правила за писане
-- [`dictionary/`](dictionary/) — ядро на речника, [пакети по област](dictionary/domains/) (механика, електрика, хидравлика, ИТ, подемна техника, автоматизация, авиация), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
+- [`dictionary/`](dictionary/) — ядро на речника, [пакети по област](dictionary/domains/) (механика, електрика, хидравлика, ИТ, подемна техника, автоматизация, авиация, автомобили, железопътна техника), неразрешени думи и [преглед за рецензенти](dictionary/REVIEW.md)
 - [`scripts/`](scripts/) — `stb-check.ps1` (проверка на текст), `build-forms.ps1` (таблица с форми на думите), `stb-lib.ps1`
 - [`tests/`](tests/) — автоматични тестове на проверката
 - [`skills/stb-bulgarian/`](skills/stb-bulgarian/) — умение за Claude (SKILL.md и справочни файлове)
@@ -46,13 +46,15 @@
 
 ## Бърз старт
 
-Проверка на текст (Windows PowerShell 5.1 или по-нов):
+Проверка на текст (Windows PowerShell 5.1 или по-нов). С `-Summary` се показва само броят забележки по правила (за дълги текстове):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Text "1. Затегнете гайката с 25 N·m."
 powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path инструкция.md -Kind procedure
 powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path инструкция.md -Domain mechanics,hydraulics
 ```
+
+Брой забележки за дълъг текст: `powershell -ExecutionPolicy Bypass -File scriptsstb-check.ps1 -Path текст.md -Domain all -Summary`
 
 Тестове: `powershell -ExecutionPolicy Bypass -File tests\run-tests.ps1`
 

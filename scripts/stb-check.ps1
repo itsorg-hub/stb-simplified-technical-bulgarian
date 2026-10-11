@@ -1,4 +1,4 @@
-﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.2.
+﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.3.
 #
 # Употреба:
 #   powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path текст.md
@@ -8,6 +8,7 @@
 # Резултатът е списък със забележки: ГРЕШКА (нарушено правило), ПРЕДУПРЕЖДЕНИЕ (изисква преценка от човек).
 # Автоматично се проверяват само правилата, които могат да се разпознаят по формата на текста.
 # Правила 2.3, 3.5 и 3.6 (отбелязани със ⚠) се маркират само като предупреждение.
+# -Summary: само брой забележки по правила (за анализ на дълги текстове).
 # Изходен код: 1 при поне една ГРЕШКА, иначе 0.
 param(
     [string]$Path,
@@ -15,7 +16,8 @@ param(
     [ValidateSet('procedure', 'description')][string]$Kind = 'procedure',
     [string[]]$Domain = @(),
     [string]$DictDir = (Join-Path $PSScriptRoot '..\dictionary'),
-    [switch]$NoVocabulary
+    [switch]$NoVocabulary,
+    [switch]$Summary
 )
 . "$PSScriptRoot\stb-lib.ps1"
 $ErrorActionPreference = 'Stop'
@@ -33,7 +35,7 @@ $reported = @('бил','била','било','били')
 $pronouns = @('той','тя','то','те','го','я','ги','му','ѝ','им','него','нея','тях','ѝ')
 $relatives = @('който','която','което','които')
 $vague = @('около','приблизително','почти')
-$stepStart = @('ако','когато','докато','не','преди','след','опасност','предупреждение','внимание','забележка')
+$stepStart = @('ако','когато','докато','не','преди','след','при','опасност','предупреждение','внимание','забележка')
 
 $findings = New-Object Collections.Generic.List[object]
 function Add-Finding($sev, $rule, $sent, $msg) {
@@ -57,7 +59,7 @@ foreach ($par in $paragraphs) {
         $sentences = [regex]::Split($safe, '(?<=[.!?])\s+') | Where-Object { $_.Trim() }
         $firstInLine = $true
         foreach ($s in $sentences) {
-            $sentNo++; $sentencesInPar++
+            $sentNo++; if (-not $isStep) { $sentencesInPar++ }
             $orig = $s.Replace('_', ',').Replace('~', '.')
             $short = if ($orig.Length -gt 45) { $orig.Substring(0, 45) + '…' } else { $orig }
             $tag = "${sentNo}: $short"
@@ -133,6 +135,13 @@ foreach ($par in $paragraphs) {
 }
 
 if ($findings.Count -eq 0) { 'Няма забележки.'; exit 0 }
+if ($Summary) {
+    "Изречения: $sentNo"
+    $findings | Group-Object Правило, Ниво | Sort-Object Count -Descending | ForEach-Object { "{0,6}  {1}" -f $_.Count, $_.Name }
+    $errS = @($findings | Where-Object { $_.Ниво -eq 'ГРЕШКА' }).Count; $warnS = @($findings | Where-Object { $_.Ниво -eq 'ПРЕДУПРЕЖДЕНИЕ' }).Count
+    "Грешки: $errS · Предупреждения: $warnS"
+    if ($errS -gt 0) { exit 1 } else { exit 0 }
+}
 $findings | Format-Table -AutoSize -Wrap | Out-String -Width 200
 $err = @($findings | Where-Object { $_.Ниво -eq 'ГРЕШКА' }).Count
 $warn = @($findings | Where-Object { $_.Ниво -eq 'ПРЕДУПРЕЖДЕНИЕ' }).Count

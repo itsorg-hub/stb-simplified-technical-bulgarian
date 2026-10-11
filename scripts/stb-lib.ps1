@@ -2,7 +2,7 @@
 # Изисква Windows PowerShell 5.1 или по-нов. Файлът е във формат UTF-8 с BOM.
 
 $script:Utf8 = New-Object System.Text.UTF8Encoding($false)
-$script:PackNames = @('mechanics', 'electrical', 'hydraulics', 'it', 'lifting', 'automation', 'aviation')
+$script:PackNames = @('mechanics', 'electrical', 'hydraulics', 'it', 'lifting', 'automation', 'aviation', 'automotive', 'railway')
 
 function Get-StbNorm([string]$s) {
     # Малки букви, без ударения (U+0300, U+0301), "ѝ" става "и".
@@ -33,6 +33,8 @@ function Get-StbTableRows([string]$file) {
 }
 
 function Get-StbPackFiles([string]$dictDir, [string[]]$domains) {
+    # При `powershell -File ... -Domain a,b` списъкът идва като един низ: разделяме го.
+    $domains = @($domains | ForEach-Object { $_ -split '[,;\s]+' } | Where-Object { $_ })
     if ($domains -contains 'all') { $domains = $script:PackNames }
     $files = New-Object Collections.Generic.List[object]
     foreach ($d in $domains) {
@@ -114,6 +116,7 @@ function Get-StbPhraseRegex([string]$phrase) {
 }
 
 function Get-StbDictionary([string]$dictDir, [string[]]$domains) {
+    $domains = @($domains | ForEach-Object { $_ -split '[,;\s]+' } | Where-Object { $_ })
     # Зарежда ядрото и избраните пакети.
     $bl = Get-StbBlacklist $dictDir
     $approved = New-Object 'Collections.Generic.HashSet[string]'
@@ -145,7 +148,8 @@ function Get-StbDictionary([string]$dictDir, [string[]]$domains) {
     $stems = @{}
     foreach ($w in $approved) {
         $s = $w
-        if ($s.Length -gt 4 -and $s -match '[аяоеи]$') { $s = $s.Substring(0, $s.Length - 1) }
+        if ($s.Length -gt 5 -and $s -match '(ам|ям)$') { $s = $s.Substring(0, $s.Length - 2) }
+        elseif ($s.Length -gt 4 -and $s -match '[аяоеи]$') { $s = $s.Substring(0, $s.Length - 1) }
         if ($s.Length -lt 4) { continue }
         $k = $s.Substring(0, 3)
         if (-not $stems.ContainsKey($k)) { $stems[$k] = New-Object Collections.Generic.List[string] }
