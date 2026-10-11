@@ -1,4 +1,4 @@
-﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.1.
+﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.2.
 #
 # Употреба:
 #   powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path текст.md
@@ -113,7 +113,7 @@ foreach ($par in $paragraphs) {
                 foreach ($t in (@(Get-StbCyrillicTokens $vtext) | Select-Object -Unique)) {
                     $lemma = if ($forms.ContainsKey($t)) { $forms[$t] } else { $t }
                     if ($approved.Contains($t) -or $approved.Contains($lemma)) {
-                        if ($dict.ActivePacks -gt 1 -and ($dict.Conflicts.Contains($t) -or $dict.Conflicts.Contains($lemma))) {
+                        if ($dict.ActivePacks -gt 1 -and ($dict.Conflicts.Contains($t) -or $dict.Conflicts.Contains($lemma) -or (Test-StbConflictForm $dict $t))) {
                             Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.6' $tag "«$t» е двусмислена между области. Уточнете (вж. dictionary/domains/conflicts.md)."
                         }
                         continue
@@ -121,7 +121,10 @@ foreach ($par in $paragraphs) {
                     if ($blacklist.ContainsKey($t)) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена дума «$t». Замяна: $($blacklist[$t])"; continue }
                     if ($blacklist.ContainsKey($lemma)) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена дума «$t» (форма на «$lemma»). Замяна: $($blacklist[$lemma])"; continue }
                     if ($dict.OtherPacks.ContainsKey($lemma)) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.1' $tag "«$t» е от пакет «$($dict.OtherPacks[$lemma])», който не е включен (-Domain)."; continue }
-                    if (Test-StbProbableForm $dict $t) { continue }
+                    if (Test-StbProbableForm $dict $t) {
+                        if ($dict.ActivePacks -gt 1 -and (Test-StbConflictForm $dict $t)) { Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.6' $tag "«$t» е двусмислена между области. Уточнете (вж. dictionary/domains/conflicts.md)." }
+                        continue
+                    }
                     Add-Finding 'ПРЕДУПРЕЖДЕНИЕ' '1.1' $tag "«$t» не е в речника."
                 }
             }        }

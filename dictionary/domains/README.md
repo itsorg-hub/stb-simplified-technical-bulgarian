@@ -1,6 +1,6 @@
 # Пакети по област
 
-**Версия v0.1 (чернова)**
+**Версия v0.2 (чернова)**
 
 Ядрото на речника (`../01` до `../05`) съдържа общи думи. Областите добавят специфични думи и глаголи. Пакетът се включва с параметър при проверка.
 
@@ -12,8 +12,9 @@
 | ИТ, мрежи и софтуер | [it.md](it.md) | `it` |
 | Подемна и мобилна техника | [lifting.md](lifting.md) | `lifting` |
 | Автоматизация и роботика | [automation.md](automation.md) | `automation` |
+| Авиация | [aviation.md](aviation.md) | `aviation` |
 
-Всички пакети: `-Domain all`. Няколко пакета: `-Domain mechanics,electrical`. Пакетите `lifting` и `automation` са създадени по анализ на реални документи (вж. [GAPS-v0.1.md](../GAPS-v0.1.md)).
+Всички пакети: `-Domain all`. Няколко пакета: `-Domain mechanics,electrical`. Пакетите `lifting`, `automation` и `aviation` са създадени по анализ на реални документи (вж. [GAPS-v0.1.md](../GAPS-v0.1.md) и [GAPS-aviation-v0.2.md](../GAPS-aviation-v0.2.md)).
 
 ## Правила за пакетите
 

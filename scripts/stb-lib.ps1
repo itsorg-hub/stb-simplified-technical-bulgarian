@@ -2,7 +2,7 @@
 # Изисква Windows PowerShell 5.1 или по-нов. Файлът е във формат UTF-8 с BOM.
 
 $script:Utf8 = New-Object System.Text.UTF8Encoding($false)
-$script:PackNames = @('mechanics', 'electrical', 'hydraulics', 'it', 'lifting', 'automation')
+$script:PackNames = @('mechanics', 'electrical', 'hydraulics', 'it', 'lifting', 'automation', 'aviation')
 
 function Get-StbNorm([string]$s) {
     # Малки букви, без ударения (U+0300, U+0301), "ѝ" става "и".
@@ -163,5 +163,15 @@ function Test-StbProbableForm($dict, [string]$t) {
     $k = $t.Substring(0, 3)
     if (-not $dict.Stems.ContainsKey($k)) { return $false }
     foreach ($s in $dict.Stems[$k]) { if ($t.StartsWith($s) -and (($t.Length - $s.Length) -le 5)) { return $true } }
+    return $false
+}
+
+function Test-StbConflictForm($dict, [string]$t) {
+    # Дали думата е форма на дума от списъка с двусмислени между области думи (по основа).
+    foreach ($c in $dict.Conflicts) {
+        if ($c.Length -lt 4) { continue }
+        $s = if ($c.Length -gt 4 -and $c -match '[аяоеи]$') { $c.Substring(0, $c.Length - 1) } else { $c }
+        if ($t.StartsWith($s) -and (($t.Length - $s.Length) -le 5)) { return $true }
+    }
     return $false
 }
