@@ -1,4 +1,4 @@
-﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.4.
+﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.5.
 #
 # Употреба:
 #   powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path текст.md
