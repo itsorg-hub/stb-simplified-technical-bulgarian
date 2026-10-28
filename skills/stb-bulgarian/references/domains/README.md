@@ -1,6 +1,6 @@
 # Пакети по област
 
-**Версия v0.5 (чернова)**
+**Версия v0.6 (чернова)**
 
 Ядрото на речника (`../01` до `../05`) съдържа общи думи. Областите добавят специфични думи и глаголи. Пакетът се включва с параметър при проверка.
 
@@ -17,7 +17,7 @@
 | Железопътна техника | [railway.md](railway.md) | `railway` |
 | Мебелно и столарско производство | [furniture.md](furniture.md) | `furniture` |
 
-Всички пакети: `-Domain all`. Няколко пакета: `-Domain mechanics,electrical`. Пакетите `lifting`, `automation`, `aviation`, `automotive`, `railway` и `furniture` са създадени по анализ на реални документи (вж. [GAPS-v0.1.md](../GAPS-v0.1.md) , [GAPS-aviation-v0.2.md](../GAPS-aviation-v0.2.md) , [GAPS-maintenance-v0.3.md](../GAPS-maintenance-v0.3.md) , [GAPS-furniture-v0.4.md](../GAPS-furniture-v0.4.md) и [GAPS-furniture-v0.5.md](../GAPS-furniture-v0.5.md)).
+Всички пакети: `-Domain all`. Няколко пакета: `-Domain mechanics,electrical`. Пакетите `lifting`, `automation`, `aviation`, `automotive`, `railway` и `furniture` са създадени по анализ на реални документи (вж. [GAPS-v0.1.md](../GAPS-v0.1.md) , [GAPS-aviation-v0.2.md](../GAPS-aviation-v0.2.md) , [GAPS-maintenance-v0.3.md](../GAPS-maintenance-v0.3.md) , [GAPS-furniture-v0.4.md](../GAPS-furniture-v0.4.md) , [GAPS-furniture-v0.5.md](../GAPS-furniture-v0.5.md) и [GAPS-machines-v0.6.md](../GAPS-machines-v0.6.md)).
 
 ## Правила за пакетите
 

@@ -81,6 +81,23 @@ function Get-StbBlacklist([string]$dictDir) {
     return $map
 }
 
+function Get-StbBlacklistPhrases([string]$dictDir) {
+    # Неразрешени фрази (от повече думи) от файл 05.
+    $list = New-Object Collections.Generic.List[object]
+    $f = Get-ChildItem $dictDir -Filter '05-*.md' | Select-Object -First 1
+    if (-not $f) { return $list.ToArray() }
+    foreach ($cells in Get-StbTableRows $f.FullName) {
+        if ($cells[0] -eq 'Неразрешена' -or $cells.Count -lt 3) { continue }
+        foreach ($item in (($cells[0] -replace '\(.*?\)', '') -split ',')) {
+            $p = (Get-StbNorm $item.Trim())
+            if ($p -match '\s' -and $p -match '[Ѐ-ӿ]') {
+                $list.Add([pscustomobject]@{ Phrase = $p; Regex = [regex]::new((Get-StbPhraseRegex $p), 'IgnoreCase'); Replacement = $cells[2] })
+            }
+        }
+    }
+    return $list.ToArray()
+}
+
 function Get-StbConflicts([string]$dictDir) {
     $set = New-Object 'Collections.Generic.HashSet[string]'
     $f = Join-Path $dictDir 'domains\conflicts.md'
@@ -156,7 +173,7 @@ function Get-StbDictionary([string]$dictDir, [string[]]$domains) {
         $stems[$k].Add($s)
     }
     return [pscustomobject]@{
-        Stems = $stems; Approved = $approved; Blacklist = $bl; Forms = (Get-StbForms $dictDir); OtherPacks = $other
+        Stems = $stems; Approved = $approved; Blacklist = $bl; BlacklistPhrases = (Get-StbBlacklistPhrases $dictDir); Forms = (Get-StbForms $dictDir); OtherPacks = $other
         PhraseRegex = $rx.ToArray(); Conflicts = (Get-StbConflicts $dictDir); ActivePacks = $packs.Count
     }
 }

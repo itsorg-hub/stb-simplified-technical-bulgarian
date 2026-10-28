@@ -1,4 +1,4 @@
-﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.5.
+﻿# STB проверка на текст. Проверява текст срещу правилата и речника на STB v0.6.
 #
 # Употреба:
 #   powershell -ExecutionPolicy Bypass -File scripts\stb-check.ps1 -Path текст.md
@@ -49,6 +49,7 @@ foreach ($par in $paragraphs) {
     $sentencesInPar = 0
     foreach ($rawLine in ($par -split '\r?\n')) {
         $line = $rawLine.Trim()
+        if ($line -match '\.{5,}') { continue }  # съдържание с точки
         if (-not $line -or $line -match '^(#|\||```|---)') { continue }
         $isStep = $line -match '^\s*\d+\.\s+'
         $line = $line -replace '^\s*(\d+\.|[-*•])\s+', ''
@@ -111,6 +112,7 @@ foreach ($par in $paragraphs) {
             # Речник
             if (-not $NoVocabulary) {
                 $vtext = Get-StbNorm $orig
+                foreach ($bp in $dict.BlacklistPhrases) { if ($bp.Regex.IsMatch($vtext)) { Add-Finding 'ГРЕШКА' '1.1' $tag "Неразрешена фраза «$($bp.Phrase)». Замяна: $($bp.Replacement)"; $vtext = $bp.Regex.Replace($vtext, ' ') } }
                 foreach ($rx in $dict.PhraseRegex) { $vtext = $rx.Replace($vtext, ' ') }
                 foreach ($t in (@(Get-StbCyrillicTokens $vtext) | Select-Object -Unique)) {
                     $lemma = if ($forms.ContainsKey($t)) { $forms[$t] } else { $t }
